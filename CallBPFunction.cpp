@@ -3,13 +3,13 @@ void AMyActor::CallBPFunction()
 	UFunction* FuncPtr = FindFunction("My Function");
 	struct
 	{
-		AActor*		SomeActor;
-		int			SomeInt;
-		UObject*	ReturnValue = nullptr;
+		AActor* SomeActor;
+		int SomeInt;
+		UObject* ReturnValue = nullptr;
 	} FuncParams;
 
-	FuncParams.SomeActor	= this;
-	FuncParams.SomeInt		= 42;
+	FuncParams.SomeActor = this;
+	FuncParams.SomeInt = 42;
 
 	TArray<FProperty*> Properties;
 	TArray<FProperty*> InParams;
@@ -33,7 +33,7 @@ void AMyActor::CallBPFunction()
 		FIntProperty* SomeIntProperty = CastField<FIntProperty>(InParams[1]);
 		FObjectProperty* ObjectReturnProperty = CastField<FObjectProperty>(OutParams[0]);
 
-		if (SomeActorProperty && SomeActorProperty->PropertyClass == UObject::StaticClass() && SomeIntProperty &&
+		if (SomeActorProperty && SomeActorProperty->PropertyClass == AActor::StaticClass() && SomeIntProperty &&
 			ObjectReturnProperty && ObjectReturnProperty->PropertyClass == UObject::StaticClass())
 		{
 			ProcessEvent(FuncPtr, &FuncParams);
